@@ -19,10 +19,11 @@ export default function LoginForm() {
    }
 
     return (
-        <form action="submit" onSubmit={handleSubmit} >
-        <h1>Bienvenue chez Travel Diary</h1>
+        <div>
+        <form  className=" text-center mx-8 my-8 "action="submit" onSubmit={handleSubmit} >
+        <h1 >Bienvenue chez Travel Diary</h1>
         <br/>
-        <h2>Connecte-toi !</h2>
+        <h2 className="bg-green-300 ">Connecte-toi !</h2>
             <input 
             value={inputValue} 
             onChange ={handleChange} 
@@ -31,5 +32,6 @@ export default function LoginForm() {
             required/>
             <button>Acceder à votre espace</button>   
         </form>
+        </div>
     )
 }
