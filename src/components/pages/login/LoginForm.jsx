@@ -1,35 +1,67 @@
 import React, { useState } from 'react'
+import ButtonLogin from '../../buttons/ButtonLogin'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+// import bgImg from '../../../assets/background.jpg';
 
 export default function LoginForm() {
     //state
 
-   const [inputValue, setInputValue] = useState("")
+   const [emailValue, setEmailValue] = useState("");
+   const [passwordValue, setPasswordValue] = useState("");
    
 
    //comportements
 
    const handleSubmit= (event) => {
    event.preventDefault()
-   alert(`Bonjour ${inputValue}`)  
-   setInputValue("")
+   alert(`Bonjour ${emailValue}`);
+   console.log(`Mot de passe : ${passwordValue}`);  
+   setEmailValue("")
+   setPasswordValue("")
    }
 
-   const handleChange = (event) => {
-   setInputValue(event.target.value)
+   const handleEmailChange = (event) => {
+    setEmailValue(event.target.value)
+   }
+
+   const handlePasswordChange = (event) => {
+    setPasswordValue(event.target.value)
    }
 
     return (
-        <form action="submit" onSubmit={handleSubmit} >
-        <h1>Bienvenue chez Travel Diary</h1>
+    
+        <div className="bg-cover bg-center h-screen flex items-center justify-center " style= {{backgroundImage: 'url("/src/assets/background.jpg")'}} >
+    
+        <form  className=" text-white font-sans text-center flex flex-col items-center justify-center m-64 absolute" action="submit" onSubmit={handleSubmit} >
+        <h1 className="font-serif lg:text-7xl md:text-6xl sm:text-4xl text-3xl my-20">My Travel Diary</h1>
         <br/>
-        <h2>Connecte-toi !</h2>
+        <div className="flex items-center">
+            <FontAwesomeIcon icon={faUser} className="mr-[-20px] mt-1"/>
             <input 
-            value={inputValue} 
-            onChange ={handleChange} 
-            type="text" 
-            placeholder="Entrez votre nom ..." 
+            className="bg-transparent border-b-2 border-white w-64 text-left p-2 pl-8 focus:outline-none placeholder-white "
+            value={emailValue} 
+            onChange ={handleEmailChange} 
+            type="email" 
+            placeholder="email" 
             required/>
-            <button>Acceder à votre espace</button>   
-        </form>
+        </div>
+            <br/>
+            <br/>
+            <br/>
+            <div className="flex items-center">
+            <FontAwesomeIcon icon={faLock} className="mr-[-20px] mt-1"/>
+            <input 
+            className=" bg-transparent border-b-2 border-white w-64 text-left p-2 pl-8 focus:outline-none placeholder-white"
+            value={passwordValue} 
+            onChange ={handlePasswordChange} 
+            type="password" 
+            placeholder="Password" 
+            required/>
+            </div>
+            <ButtonLogin/>
+        </form> 
+    </div>
     )
 }
